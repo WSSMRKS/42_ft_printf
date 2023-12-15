@@ -1,0 +1,88 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    concept.txt                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/12 05:54:21 by maweiss           #+#    #+#              #
+#    Updated: 2023/12/15 16:59:17 by maweiss          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Function Prototype:
+ft_printf(const char *format, ...);
+
+requirements:
+Don't implement the buffer management of the original printf()
+Your funtion has to handle the following conversions: cspdiuxX%
+Your function will be compared against the original printf()
+You must use the command ar to create your library.
+Your libftprintf.a has to be created at the root of your repo.
+
+You have to implement the following conversions:
+1 %c Prints a single character.
+2 %s Prints a string (as defined by the common C convention).
+3 %p The void * pointer argument has to be printed in hexadecimal format.
+4 %d Prints a decimal (base 10) number.
+5 %i Prints an integer in base 10.
+6 %u Prints an unsigned decimal (base 10) number.
+7 %x Prints a number in hexadecimal (base 16) lowercase format.
+8 %X Prints a number in hexadecimal (base 16) uppercase format.
+9 %% Prints a percent sign.
+Bonus:
+Manage any of the following flags: '-0.' and the field minimum width under all conversions.
+Manage all the following flags: '# +' (space included)
+
+1. %c --> single char --> ft_putchar haken dran;
+2. %s --> string printable (what happens with non printables?)
+3. %p The void * pointer argument has to be printed in Hexadecimal format.
+
+Flags:
+"-" left justification (linksbuendig)
+"."
+	bei %s --> Number of characters to be printed
+	bei %d, u, i, x, X Padding nullen (digits < 5 und %.5u --> value 123 output 00123)
+"#" adds 0x or 0X to the output.
+" " Wert der variablen positiv: space wird vorangestellt. negativ: nothing happens.
+"+" Wert der variablen positiv: + wird vorangestellt. negativ: nothing happens.
+"0"
+
+
+
+PAP:
+
+input: ft_printf("string % string % string % string % string % string", value, value, value, value, value);
+
+ft_solve_statement
+
+
+
+%-d %.d %#d % d %+d %05U
+
+cspdiuxX%
+
+hirarchy of flags:
+- left justification
+
+
+#	0 is ignored when - is present
+#	space after any other conversion is invalid
+#	space in the beginning is always space
+#	space is ignored when + is present
+#	+ in the beginning is always +
+#	# undifined with %d
+#	. bei %s number of characters to be printed;
+#	. bei %s number of characters to be printed;
+
+
+read left to right
+%-20.15d
+%020.15d
+
+
+Variatic functions
+
+int printf(const char *format, ...);
+
+
