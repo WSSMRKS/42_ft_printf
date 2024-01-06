@@ -6,16 +6,12 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:35:05 by maweiss           #+#    #+#             */
-/*   Updated: 2023/12/15 13:56:39 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/06 20:01:53 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+#include "libft.h"
 
 int	ft_strlen_check(char *str)
 {
@@ -51,7 +47,7 @@ unsigned long	ft_neg(unsigned long nbr)
 	if (nbr < 0)
 	{
 		u_inp = nbr * -1;
-		ft_putchar('-');
+		ft_putchar_fd('-', 0);
 	}
 	else
 		u_inp = nbr;
@@ -71,7 +67,15 @@ int	ft_power(unsigned long nbr, int b_len)
 	return (power);
 }
 
-void	ft_itoa_base(unsigned long nbr, char *base)
+int	ft_ret(unsigned long nbr, int u_inp, int b_len)
+{
+	if (nbr != u_inp)
+		return (ft_power(u_inp, b_len) + 2);
+	else
+		return (ft_power(u_inp, b_len) + 1);
+}
+
+int	ft_itoa_base(unsigned long nbr, char *base)
 {
 	int				b_len;
 	int				power;
@@ -94,7 +98,8 @@ void	ft_itoa_base(unsigned long nbr, char *base)
 			tmp /= b_len;
 			div_count--;
 		}
-		ft_putchar(base[tmp % b_len]);
+		ft_putchar_fd(base[tmp % b_len], 0);
 		power--;
 	}
+	return (ft_ret(nbr, u_inp, b_len));
 }

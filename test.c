@@ -6,13 +6,13 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:04:54 by maweiss           #+#    #+#             */
-/*   Updated: 2023/12/15 23:08:42 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/06 20:13:05 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
-#include "ft_itoa_base.c"
+#include "ft_printf.h"
 
 int main(void)
 {
@@ -52,6 +52,10 @@ int main(void)
 	printf("\n");
 	printf("11: \"hallo tahis dlsjf%-     10.d%\"", (int) p);
 	printf("\n");
+	printf("12: \"hallo tahis\0 dlsjf\"");
+	printf("\n");
+
+	ft_printf("%%");
 
 	// printf("%p\n", pp);
 	// printf("%p\n", ppp);
