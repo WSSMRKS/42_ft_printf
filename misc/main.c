@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 06:02:09 by maweiss           #+#    #+#             */
-/*   Updated: 2023/12/15 14:00:16 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/07 17:28:07 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main (void)
 	printf("%p\n", &test[2]);
 	printf("%p\n", &test[3]);
 	printf("%p\n", &p);
+	printf("%p\n", p);
 	printf("%p\n", pp);
 	printf("%p\n", ppp);
 

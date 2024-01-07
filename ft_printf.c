@@ -6,64 +6,11 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:04:41 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/07 13:05:53 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/07 20:20:09 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// t_arg_spec	ft_get_statement(char *format, t_arg_spec spec)
-// {
-// 	static char	*del = "0csdiupxX%";
-// 	int			len;
-
-// 	len = 0;
-
-// 	while (*format != '\0')
-// 	{
-// 		while (*format != *del && *del != 0)
-// 			del++;
-// 		if (*format == *del)
-// 			break ;
-// 	}
-// 	if (format == 0)
-// }
-
-/*get the case of the expression*/
-int	ft_get_case(char *format)
-{
-	char		*sub;
-
-	sub = format;
-	while (*sub++ != '\0')
-	{
-		if (*sub == 'c')
-			return (1);
-		if (*sub == 's')
-		{
-			//write(1, "Case 2 detected\n", 16);
-			return (2);
-		}
-		if (*sub == 'd' || *sub == 'i')
-		{
-			//write(1, "Case 3 detected\n", 16);
-			return (3);
-		}
-		if (*sub == 'u')
-			return (5);
-		if (*sub == 'p')
-			return (6);
-		if (*sub == 'x')
-			return (7);
-		if (*sub == 'X')
-			return (8);
-		if (*sub == '%')
-			return (9);
-		if (*sub == '\0')
-			return (0);
-	}
-	return (-1);
-}
 
 t_arg_spec	ft_init(int *count, int *i)
 {
@@ -80,24 +27,62 @@ t_arg_spec	ft_init(int *count, int *i)
 	a.spercent = 0;
 }
 
-static int	ft_core(char *s, t_arg_spec spec, va_list args, int *count)
+int	ft_get_case(char *format)
 {
-	//write(1, "ft core called\n", 15);
-	//printf("spec.type = %d\n", spec.type);
+	char		*sub;
+
+	sub = format;
+	while (*sub++ != '\0')
+	{
+		if (*sub == 'c')
+			return (1);
+		if (*sub == 's')
+			return (2);
+		if (*sub == 'd' || *sub == 'i')
+			return (3);
+		if (*sub == 'u')
+			return (5);
+		if (*sub == 'p')
+			return (6);
+		if (*sub == 'x')
+			return (7);
+		if (*sub == 'X')
+			return (8);
+		if (*sub == '%')
+			return (9);
+		if (*sub == '\0')
+			return (0);
+	}
+	return (-1);
+}
+
+static int	ft_core(char *s, t_arg_spec spec, va_list ar, int *count)
+{
+	long	tmp;
+
 	if (spec.type == 1)
-	{
-		*count += ft_putchar_fd_ret(va_arg(args, int), 1);
-	}
+		*count += ft_putchar_fd_ret(va_arg(ar, int), 1);
 	if (spec.type == 2)
-	{
-		//write(1, "type 2 executed\n", 16);
-		*count += ft_putstr_fd_ret(va_arg(args, char*), 1);
-	}
+		*count += ft_putstr_fd_ret(va_arg(ar, char *), 1);
 	if (spec.type == 3)
+		*count += ft_pnb_b_fd((long) va_arg(ar, int), "0123456789", 1);
+	if (spec.type == 5)
+		*count += ft_pnb_b_fd((long) va_arg(ar, long), "0123456789", 1);
+	if (spec.type == 6)
 	{
-		//write(1, "type 3 executed\n", 16);
-		*count += ft_itoa_base((unsigned long) va_arg(args, int), "0123456789");
+		tmp = va_arg(ar, long);
+		if (tmp == 0)
+			*count += ft_putstr_fd_ret("(nil)", 1);
+		else
+		{
+			*count += ft_putstr_fd_ret("0x", 1);
+			*count += ft_pnb_b_fd(tmp, "0123456789abcdef", 1);
+		}
 	}
+	if (spec.type == 7)
+		*count += ft_pnb_b_fd((long) va_arg(ar, long), "0123456789abcdef", 1);
+	if (spec.type == 8)
+		*count += ft_pnb_b_fd((long) va_arg(ar, long), "0123456789ABCDEF", 1);
 	else
 		return (-1);
 	return (1);
@@ -117,25 +102,16 @@ int	ft_printf(const char *s, ...)
 		if (s[i] == '%')
 		{
 			spec.type = ft_get_case((char *)s + i);
-			//ft_itoa_base(spec.type, "0123456789");
-			//write(1, "\n", 1);
+			if (spec.type == 0)
+				return (-1);
 			if (spec.type == 9)
-			{
-				write(1, "%", 1);
-				i += 2;
-				count += 1;
-			}
+				count += ft_putchar_fd_ret('%', 1);
 			if (spec.type != 0 && spec.type != 9)
-			{
 				ft_core((char *)(s + i + 1), spec, args, &count);
-				i += 2;
-			}
+			i += 2; // remember case with only one %
 		}
 		else
-		{
-			write(1, s + i++, 1);
-			count++;
-		}
+			count += ft_putchar_fd_ret(s[i++], 1);
 	}
 	va_end(args);
 	return (count);

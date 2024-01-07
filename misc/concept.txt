@@ -6,7 +6,7 @@
 #    By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/12 05:54:21 by maweiss           #+#    #+#              #
-#    Updated: 2023/12/15 16:59:17 by maweiss          ###   ########.fr        #
+#    Updated: 2024/01/07 20:11:24 by maweiss          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,15 +21,15 @@ You must use the command ar to create your library.
 Your libftprintf.a has to be created at the root of your repo.
 
 You have to implement the following conversions:
-1 %c Prints a single character.
-2 %s Prints a string (as defined by the common C convention).
-3 %p The void * pointer argument has to be printed in hexadecimal format.
-4 %d Prints a decimal (base 10) number.
-5 %i Prints an integer in base 10.
-6 %u Prints an unsigned decimal (base 10) number.
+X	1 %c Prints a single character.
+X	2 %s Prints a string (as defined by the common C convention).
+3 %p The void * pointer argument has to be printed in hexadecimal format. -- argument of type int will be printed as hex with "0x"
+X	4 %d Prints a decimal (base 10) number.
+X	5 %i Prints an integer in base 10.
+X	6 %u Prints an unsigned decimal (base 10) number.
 7 %x Prints a number in hexadecimal (base 16) lowercase format.
 8 %X Prints a number in hexadecimal (base 16) uppercase format.
-9 %% Prints a percent sign.
+X	9 %% Prints a percent sign.
 Bonus:
 Manage any of the following flags: '-0.' and the field minimum width under all conversions.
 Manage all the following flags: '# +' (space included)
@@ -86,3 +86,64 @@ Variatic functions
 int printf(const char *format, ...);
 
 
+
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 11:06:46 by maweiss           #+#    #+#             */
+/*   Updated: 2024/01/07 19:46:40 by maweiss          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "libft.h"
+
+typedef struct s_arg_spec
+{
+	int		type;		// case
+	int		just;		// -		number of padding spaces neg = alligned left
+	int		dot;		// .		number of leading zeroes
+	int		shash;	// #		yes or no	0x in types x or X
+	int		splus;	// plus:	yes or no	plus if value positive
+	int		sspace;	// space:	yes or no	space if value positive (ignored in x and X)
+	int		spercent;	// print percent sign
+}				t_arg_spec;
+
+int	ft_printf(const char *s, ...);
+int	ft_itoa_base(long nbr, char *base);
+int	ft_putstr_fd_ret(char *s, int fd);
+int	ft_putchar_fd_ret(char c, int fd);
+
+
+#endif
+
+
+
+
+// t_arg_spec	ft_get_statement(char *format, t_arg_spec spec)
+// {
+// 	static char	*del = "0csdiupxX%";
+// 	int			len;
+
+// 	len = 0;
+
+// 	while (*format != '\0')
+// 	{
+// 		while (*format != *del && *del != 0)
+// 			del++;
+// 		if (*format == *del)
+// 			break ;
+// 	}
+// 	if (format == 0)
+// }
+
+/*get the case of the expression*/

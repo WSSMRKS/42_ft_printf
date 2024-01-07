@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_itoa_base_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:35:05 by maweiss           #+#    #+#             */
-/*   Updated: 2023/10/11 15:53:38 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/07 19:49:43 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_strlen_check(char *str)
 {
@@ -44,26 +40,26 @@ int	ft_strlen_check(char *str)
 	return (strlen);
 }
 
-unsigned int	ft_neg(int nbr)
+unsigned long	ft_neg(long nbr, int fd)
 {
-	unsigned int	u_inp;
+	unsigned long	u_inp;
 
 	if (nbr < 0)
 	{
 		u_inp = nbr * -1;
-		ft_putchar('-');
+		ft_putchar_fd('-', fd);
 	}
 	else
-		u_inp = nbr;
+		u_inp = (unsigned long) nbr;
 	return (u_inp);
 }
 
-int	ft_power(unsigned int nbr, int b_len)
+int	ft_power(unsigned long nbr, int b_len)
 {
 	int	power;
 
 	power = 0;
-	while (nbr >= (unsigned int) b_len)
+	while (nbr >= (long) b_len)
 	{
 		nbr /= b_len;
 		power++;
@@ -71,19 +67,27 @@ int	ft_power(unsigned int nbr, int b_len)
 	return (power);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+int	ft_ret(long nbr, long u_inp, int b_len)
+{
+	if (nbr != u_inp)
+		return (ft_power(u_inp, b_len) + 2);
+	else
+		return (ft_power(u_inp, b_len) + 1);
+}
+
+int	ft_pnb_b_fd(long nbr, char *base, int fd)
 {
 	int				b_len;
 	int				power;
-	unsigned int	tmp;
+	unsigned long	tmp;
 	int				div_count;
-	unsigned int	u_inp;
+	unsigned long	u_inp;
 
 	b_len = 0;
 	b_len = ft_strlen_check(base);
 	if (b_len < 0)
-		return ;
-	u_inp = ft_neg(nbr);
+		return (-1);
+	u_inp = ft_neg(nbr, fd);
 	power = ft_power(u_inp, b_len);
 	while (power >= 0)
 	{
@@ -94,7 +98,13 @@ void	ft_putnbr_base(int nbr, char *base)
 			tmp /= b_len;
 			div_count--;
 		}
-		ft_putchar(base[tmp % b_len]);
+		ft_putchar_fd_ret(base[tmp % b_len], fd);
 		power--;
 	}
+	return (ft_ret(nbr, u_inp, b_len));
 }
+
+// int	main(void)
+// {
+// 	printf("%d", ft_itoa_base_fd(4294967295, "0123456789"));
+// }

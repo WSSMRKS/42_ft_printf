@@ -12,7 +12,7 @@ TESTFLAGS = -g
 COPTIONS = -c
 CC = cc
 # Source Files #
-SRC =  	ft_printf.c helper_functions.c ft_itoa_base.c
+SRC =  	ft_printf.c helper_functions.c ft_pnb_b_fd.c
 MAIN_SRC = 
 TEST_SRC = test.c
 HEADERS = ft_printf.h
@@ -45,7 +45,7 @@ libft:
 	cp -rf libft/libft.a ./
 
 test: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
-	@$(CC) $(TESTFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
+	@$(CC) $(TESTFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) libft.a -o $(MAIN_NAME)
 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
 
 test_strict: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
