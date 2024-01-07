@@ -6,11 +6,11 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 19:43:43 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/06 20:03:28 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/07 11:46:04 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	ft_putstr_fd_ret(char *s, int fd)
 {

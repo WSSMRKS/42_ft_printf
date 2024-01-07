@@ -2,7 +2,7 @@
 SRCDIR =
 HDRDIR =
 OBJDIR =
-LIBFTDIR = libft
+LIBFTDIR = libft/
 # Names #
 NAME = libftprintf.a
 MAIN_NAME = a.out
@@ -34,6 +34,12 @@ $(NAME): $(SRC_OBJ)
 # 	ar rcs $(NAME) $(SRC_OBJ) $(BONUS_OBJ)
 
 libft:
+  ifeq ("$(wildcard $(LIBFTDIR))", "")
+	@echo "Directory does not exist."
+	git submodule add git@github.com:WSSMRKS/libft.git
+  else
+	@echo "Skipping download because directory already exists."
+  endif
 	$(MAKE) all -C libft/
 	cp -rf libft/libft.h ./
 	cp -rf libft/libft.a ./
@@ -62,7 +68,11 @@ clean:
 	@rm -f $(MAIN_OBJ)
 	@rm -f $(BONUS_OBJ)
 	@rm -f $(TEST_OBJ)
+  ifeq ("$(wildcard $(LIBFTDIR))", "")
+	@echo "Directory does not exist."
+  else
 	$(MAKE) fclean -C libft/
+  endif
 	@rm -f libft.a
 	@rm -f libft.h
 	@echo "Working folder clean."

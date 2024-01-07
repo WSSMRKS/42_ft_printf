@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:04:54 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/06 20:13:05 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/07 11:52:26 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int main(void)
 	printf("12: \"hallo tahis\0 dlsjf\"");
 	printf("\n");
 
-	ft_printf("%%");
+	ft_printf("%s", "this is the string to print");
 
 	// printf("%p\n", pp);
 	// printf("%p\n", ppp);

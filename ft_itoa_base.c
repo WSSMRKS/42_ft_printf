@@ -6,12 +6,11 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:35:05 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/06 20:01:53 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/07 11:46:52 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft.h"
+#include "ft_printf.h"
 
 int	ft_strlen_check(char *str)
 {
@@ -86,7 +85,7 @@ int	ft_itoa_base(unsigned long nbr, char *base)
 	b_len = 0;
 	b_len = ft_strlen_check(base);
 	if (b_len < 0)
-		return ;
+		return (-1);
 	u_inp = ft_neg(nbr);
 	power = ft_power(u_inp, b_len);
 	while (power >= 0)
@@ -98,7 +97,7 @@ int	ft_itoa_base(unsigned long nbr, char *base)
 			tmp /= b_len;
 			div_count--;
 		}
-		ft_putchar_fd(base[tmp % b_len], 0);
+		ft_putchar_fd_ret(base[tmp % b_len], 0);
 		power--;
 	}
 	return (ft_ret(nbr, u_inp, b_len));

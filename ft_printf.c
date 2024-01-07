@@ -6,31 +6,11 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:04:41 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/06 20:04:33 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/07 11:44:56 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
-
-
-
-
-typedef struct s_arg_spec
-{
-	int		type;		// case
-	int		just;		// -		number of padding spaces neg = alligned left
-	int		dot;		// .		number of leading zeroes
-	int		shash;	// #		yes or no	0x in types x or X
-	int		splus;	// plus:	yes or no	plus if value positive
-	int		sspace;	// space:	yes or no	space if value positive (ignored in x and X)
-	int		spercent;	// print percent sign
-}				t_arg_spec;
-#endif
+#include "ft_printf.h"
 
 // t_arg_spec	ft_get_statement(char *format, t_arg_spec spec)
 // {
@@ -99,14 +79,14 @@ static int	ft_core(char *s, t_arg_spec spec, va_list args, int *count)
 {
 	int printed;
 
-	printed
+	printed = 0;
 	if (spec.type == 1)
-		ft_putchar_fd_ret(va_arg(args, char), 0);
+		ft_putchar_fd_ret(va_arg(args, int), 0);
 		*count += 1;
 	if (spec.type == 2)
 		ft_putstr_fd_ret(va_arg(args, char*), 0);
-	if (spec.type == 3)
-		ft_itoa_base
+	//if (spec.type == 3)
+		//ft_itoa_base
 }
 
 int	ft_printf(const char *s, ...)

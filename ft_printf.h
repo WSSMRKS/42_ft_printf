@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:06:46 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/06 20:12:46 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/07 11:42:11 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ typedef struct s_arg_spec
 
 int	ft_printf(const char *s, ...);
 int	ft_itoa_base(unsigned long nbr, char *base);
+int	ft_putstr_fd_ret(char *s, int fd);
+int	ft_putchar_fd_ret(char c, int fd);
+
 
 #endif
