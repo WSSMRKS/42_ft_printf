@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base_fd.c                                     :+:      :+:    :+:   */
+/*   ft_pnb_b_fd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 13:35:05 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/07 19:49:43 by maweiss          ###   ########.fr       */
+/*   Created: 2024/01/08 13:35:58 by maweiss           #+#    #+#             */
+/*   Updated: 2024/01/08 13:36:28 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	ft_strlen_check(char *str)
+static int	ft_strlen_check(char *str)
 {
 	int	strlen;
 	int	i;
@@ -40,7 +40,7 @@ int	ft_strlen_check(char *str)
 	return (strlen);
 }
 
-unsigned long	ft_neg(long nbr, int fd)
+static unsigned long	ft_neg(long nbr, int fd)
 {
 	unsigned long	u_inp;
 
@@ -54,7 +54,7 @@ unsigned long	ft_neg(long nbr, int fd)
 	return (u_inp);
 }
 
-int	ft_power(unsigned long nbr, int b_len)
+static int	ft_power(unsigned long nbr, int b_len)
 {
 	int	power;
 

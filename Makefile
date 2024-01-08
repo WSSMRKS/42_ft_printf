@@ -27,7 +27,7 @@ TEST_OBJ = $(TEST_SRC:.c=.o)
 # Targets #
 all : $(NAME)
 
-$(NAME): $(SRC_OBJ)
+$(NAME): libft $(SRC_OBJ) 
 	ar rcs $(NAME) $(SRC_OBJ)
 
 # bonus: $(BONUS_OBJ) $(SRC_OBJ)
@@ -45,16 +45,16 @@ libft:
 	cp -rf libft/libft.a ./
 
 test: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
-	@$(CC) $(TESTFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) libft.a -o $(MAIN_NAME)
+	@$(CC) $(TESTFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) $(LIBFT_SRC) -o $(MAIN_NAME)
 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
 
 test_strict: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
-	@$(CC) $(CFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
+	@$(CC) $(CFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) $(LIBFT_SRC) -o $(MAIN_NAME)
 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
 
-run: fclean test bonus
+run: fclean test
 	@echo "\"a.out\" execution below!"
-	@./a.out | cat -e
+	@./a.out
 
 debug: fclean test bonus
 	gdb ./a.out
@@ -72,11 +72,10 @@ clean:
 	@echo "Directory does not exist."
   else
 	$(MAKE) fclean -C libft/
+	@echo "libft folder cleaned"
   endif
 	@rm -f libft.a
 	@rm -f libft.h
-	@echo "Working folder clean."
-	@echo "\"libft.a\" left if it was there before"
 
 fclean: clean
 	@rm -f $(NAME) $(MAIN_NAME)
@@ -92,11 +91,17 @@ help:
 	@echo "all --> Compile whole project"
 	@echo "name --> Display project name"
 	@echo "bonus --> Compile bonus if available project"
-#	@echo "test --> Compile main if available"
-#	@echo "run --> Run main if available"
-#	@echo "debug --> Run GDB with a.out"
+	@echo "test --> Compile main if available"
+	@echo "run --> Run main if available"
+	@echo "debug --> Run GDB with a.out"
 	@echo "clean --> Delete all object files"
 	@echo "fclean --> Delete everything besides source files"
 	@echo "re --> recompile everything (fclean, all)"
+	@echo "libft --> Compile libft and copy libft.h and libft.a to project folder"
 
-.PHONY: all name test run bonus debug fclean clean re help libft
+.PHONY: all name test test_strict run bonus debug fclean clean re help libft
+
+
+# End comments on how to compile ft_printf with a new project:
+# prerequisites: libftprintf.a libft.a libft.h ft_printf.h
+# compile with "cc -g main.c libft.a libftprintf.a"

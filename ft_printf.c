@@ -6,13 +6,13 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:04:41 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/07 20:20:09 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/08 13:35:39 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_arg_spec	ft_init(int *count, int *i)
+static t_arg_spec	ft_init(int *count, int *i)
 {
 	t_arg_spec	a;
 
@@ -27,7 +27,7 @@ t_arg_spec	ft_init(int *count, int *i)
 	a.spercent = 0;
 }
 
-int	ft_get_case(char *format)
+static int	ft_get_case(char *format)
 {
 	char		*sub;
 
