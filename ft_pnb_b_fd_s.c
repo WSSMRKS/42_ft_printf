@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pnb_b_fd.c                                      :+:      :+:    :+:   */
+/*   ft_pnb_b_fd_s.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:35:58 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/09 00:26:06 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/09 00:29:00 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static int	ft_strlen_check(char *str)
 	return (strlen);
 }
 
-static unsigned long	ft_neg(long nbr, int fd, int negp)
+static unsigned int	ft_neg(int nbr, int fd, int negp)
 {
-	unsigned long	u_inp;
+	unsigned int	u_inp;
 
 	if (nbr < 0 && negp == 1)
 	{
@@ -49,16 +49,16 @@ static unsigned long	ft_neg(long nbr, int fd, int negp)
 		ft_putchar_fd_ret('-', fd);
 	}
 	else
-		u_inp = (unsigned long) nbr;
+		u_inp = (unsigned int) nbr;
 	return (u_inp);
 }
 
-static int	ft_power(unsigned long nbr, int b_len)
+static int	ft_power(unsigned int nbr, int b_len)
 {
 	int	power;
 
 	power = 0;
-	while (nbr >= (long) b_len)
+	while (nbr >= (int) b_len)
 	{
 		nbr /= b_len;
 		power++;
@@ -66,7 +66,7 @@ static int	ft_power(unsigned long nbr, int b_len)
 	return (power);
 }
 
-static int	ft_ret(long nbr, long u_inp, int b_len)
+static int	ft_ret(int nbr, int u_inp, int b_len)
 {
 	if (nbr != u_inp)
 		return (ft_power(u_inp, b_len) + 2);
@@ -74,13 +74,13 @@ static int	ft_ret(long nbr, long u_inp, int b_len)
 		return (ft_power(u_inp, b_len) + 1);
 }
 
-int	ft_pnb_b_fd(long nbr, char *base, int fd, int negp)
+int	ft_pnb_b_fd_s(int nbr, char *base, int fd, int negp)
 {
 	int				b_len;
 	int				power;
-	unsigned long	tmp;
+	unsigned int	tmp;
 	int				div_count;
-	unsigned long	u_inp;
+	unsigned int	u_inp;
 
 	b_len = 0;
 	b_len = ft_strlen_check(base);

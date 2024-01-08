@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:04:41 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/08 13:35:39 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/09 00:22:42 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ static int	ft_core(char *s, t_arg_spec spec, va_list ar, int *count)
 	if (spec.type == 2)
 		*count += ft_putstr_fd_ret(va_arg(ar, char *), 1);
 	if (spec.type == 3)
-		*count += ft_pnb_b_fd((long) va_arg(ar, int), "0123456789", 1);
+		*count += ft_pnb_b_fd((long) va_arg(ar, int), "0123456789", 1, 1);
 	if (spec.type == 5)
-		*count += ft_pnb_b_fd((long) va_arg(ar, long), "0123456789", 1);
+		*count += ft_pnb_b_fd((long) va_arg(ar, unsigned int), "0123456789", 1, 1);
 	if (spec.type == 6)
 	{
 		tmp = va_arg(ar, long);
@@ -76,13 +76,15 @@ static int	ft_core(char *s, t_arg_spec spec, va_list ar, int *count)
 		else
 		{
 			*count += ft_putstr_fd_ret("0x", 1);
-			*count += ft_pnb_b_fd(tmp, "0123456789abcdef", 1);
+			*count += ft_pnb_b_fd(tmp, "0123456789abcdef", 1, 0);
 		}
 	}
 	if (spec.type == 7)
-		*count += ft_pnb_b_fd((long) va_arg(ar, long), "0123456789abcdef", 1);
+	{
+		*count += ft_pnb_b_fd_s(va_arg(ar, int), "0123456789abcdef", 1, 0);
+	}
 	if (spec.type == 8)
-		*count += ft_pnb_b_fd((long) va_arg(ar, long), "0123456789ABCDEF", 1);
+		*count += ft_pnb_b_fd_s(va_arg(ar, int), "0123456789ABCDEF", 1, 0);
 	else
 		return (-1);
 	return (1);

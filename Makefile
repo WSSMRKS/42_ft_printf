@@ -12,7 +12,7 @@ TESTFLAGS = -g
 COPTIONS = -c
 CC = cc
 # Source Files #
-SRC =  	ft_printf.c helper_functions.c ft_pnb_b_fd.c
+SRC =  	ft_printf.c helper_functions.c ft_pnb_b_fd.c ft_pnb_b_fd_s.c
 MAIN_SRC = 
 TEST_SRC = test.c
 HEADERS = ft_printf.h

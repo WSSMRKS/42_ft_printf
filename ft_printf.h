@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:06:46 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/08 15:43:31 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/09 00:24:56 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct s_arg_spec
 }				t_arg_spec;
 
 int	ft_printf(const char *s, ...);
-int	ft_pnb_b_fd(long nbr, char *base, int fd);
+int	ft_pnb_b_fd(long nbr, char *base, int fd, int negp);
+int	ft_pnb_b_fd_s(int nbr, char *base, int fd, int negp);
 int	ft_putstr_fd_ret(char *s, int fd);
 int	ft_putchar_fd_ret(char c, int fd);
 #endif
