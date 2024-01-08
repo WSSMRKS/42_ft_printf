@@ -27,7 +27,7 @@ TEST_OBJ = $(TEST_SRC:.c=.o)
 # Targets #
 all : $(NAME)
 
-$(NAME): libft $(SRC_OBJ) 
+$(NAME): $(SRC_OBJ) 
 	ar rcs $(NAME) $(SRC_OBJ)
 
 # bonus: $(BONUS_OBJ) $(SRC_OBJ)

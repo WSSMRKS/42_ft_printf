@@ -6,13 +6,14 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:04:54 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/07 19:32:36 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:21:20 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include "ft_printf.h"
+#include <limits.h>
 
 int	main(void)
 {
@@ -183,4 +184,86 @@ int	main(void)
 	printf("\nReturn value: %d\n", printf("%s\n%u\n%u\n%u\n%c\n%%\n", "this is the string to print", 12345, -222, 4294967295, 'a'));
 	printf("selfmade:\n");
 	ft_printf("\nReturn value: %d\n", ft_printf("%s\n%u\n%u\n%u\n%c\n%%\n", "this is the string to print", 12345, -222, 4294967295, 'a'));
+
+	printf("\n#24 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" NULL %s NULL ", NULL));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" NULL %s NULL ", NULL));
+
+	printf("\n#25 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %p %p ", LONG_MIN, LONG_MAX));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %p %p ", LONG_MIN, LONG_MAX));
+
+	printf("\n#26 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %p %p ", ULONG_MAX, -ULONG_MAX));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %p %p ", ULONG_MAX, -ULONG_MAX));
+
+	printf("\n#27 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %u ", LONG_MAX));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %u ", LONG_MAX));
+
+	printf("\n#28 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %u ", LONG_MIN));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %u ", LONG_MIN));
+
+	printf("\n#29 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %u ", ULONG_MAX));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %u ", ULONG_MAX));
+
+	printf("\n#30 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %u ", 9223372036854775807LL));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %u ", 9223372036854775807LL));
+
+	printf("\n#31 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %u %u %u %u %u %u %u", INT_MAX, INT_MIN, LONG_MAX,
+LONG_MIN, ULONG_MAX, 0, -42));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %u %u %u %u %u %u %u", INT_MAX, INT_MIN, LONG_MAX,
+LONG_MIN, ULONG_MAX, 0, -42));
+
+	printf("\n#32 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %x ", LONG_MAX));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %x ", LONG_MAX));
+
+	printf("\n#33 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %x ", LONG_MIN));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %x ", LONG_MIN));
+
+	printf("\n#34 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %x ", ULONG_MAX));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %x ", ULONG_MAX));
+
+	printf("\n#35 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %x ", 9223372036854775807LL));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %x ", 9223372036854775807LL));
+
+	printf("\n#36 Francinette errors\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %x %x %x %x %x %x %x", INT_MAX, INT_MIN, LONG_MAX,
+LONG_MIN, ULONG_MAX, 0, -42));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %x %x %x %x %x %x %x", INT_MAX, INT_MIN, LONG_MAX,
+LONG_MIN, ULONG_MAX, 0, -42));
 }

@@ -6,12 +6,11 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:35:58 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/08 13:36:28 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/08 14:13:00 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 static int	ft_strlen_check(char *str)
 {
@@ -47,7 +46,7 @@ static unsigned long	ft_neg(long nbr, int fd)
 	if (nbr < 0)
 	{
 		u_inp = nbr * -1;
-		ft_putchar_fd('-', fd);
+		ft_putchar_fd_ret('-', fd);
 	}
 	else
 		u_inp = (unsigned long) nbr;
