@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:35:58 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/09 00:29:00 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/14 17:46:17 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_power(unsigned int nbr, int b_len)
 	int	power;
 
 	power = 0;
-	while (nbr >= (int) b_len)
+	while (nbr >= (unsigned int) b_len)
 	{
 		nbr /= b_len;
 		power++;

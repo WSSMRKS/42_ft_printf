@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:04:41 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/09 00:22:42 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/14 17:44:41 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_arg_spec	ft_init(int *count, int *i)
 	a.splus = 0;
 	a.sspace = 0;
 	a.spercent = 0;
+	return (a);
 }
 
 static int	ft_get_case(char *format)
@@ -56,7 +57,22 @@ static int	ft_get_case(char *format)
 	return (-1);
 }
 
-static int	ft_core(char *s, t_arg_spec spec, va_list ar, int *count)
+static int	ft_p(long tmp)
+{
+	int	count;
+
+	count = 0;
+	if (tmp == 0)
+		count += ft_putstr_fd_ret("(nil)", 1);
+	else
+	{
+		count += ft_putstr_fd_ret("0x", 1);
+		count += ft_pnb_b_fd(tmp, "0123456789abcdef", 1, 0);
+	}
+	return (count);
+}
+
+static long	ft_core(t_arg_spec spec, va_list ar, int *count)
 {
 	long	tmp;
 
@@ -67,17 +83,12 @@ static int	ft_core(char *s, t_arg_spec spec, va_list ar, int *count)
 	if (spec.type == 3)
 		*count += ft_pnb_b_fd((long) va_arg(ar, int), "0123456789", 1, 1);
 	if (spec.type == 5)
-		*count += ft_pnb_b_fd((long) va_arg(ar, unsigned int), "0123456789", 1, 1);
+		*count += ft_pnb_b_fd((long) va_arg(ar, unsigned int),
+				"0123456789", 1, 1);
 	if (spec.type == 6)
 	{
 		tmp = va_arg(ar, long);
-		if (tmp == 0)
-			*count += ft_putstr_fd_ret("(nil)", 1);
-		else
-		{
-			*count += ft_putstr_fd_ret("0x", 1);
-			*count += ft_pnb_b_fd(tmp, "0123456789abcdef", 1, 0);
-		}
+		*count += ft_p(tmp);
 	}
 	if (spec.type == 7)
 	{
@@ -109,8 +120,8 @@ int	ft_printf(const char *s, ...)
 			if (spec.type == 9)
 				count += ft_putchar_fd_ret('%', 1);
 			if (spec.type != 0 && spec.type != 9)
-				ft_core((char *)(s + i + 1), spec, args, &count);
-			i += 2; // remember case with only one %
+				ft_core(spec, args, &count);
+			i += 2;
 		}
 		else
 			count += ft_putchar_fd_ret(s[i++], 1);

@@ -48,34 +48,34 @@ test: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
 	@$(CC) $(TESTFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
 
-test_strict: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
-	@$(CC) $(CFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
-	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
+# test_strict: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
+# 	@$(CC) $(CFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
+# 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
 
-run: fclean test
-	@echo "\"a.out\" execution below!"
-	@./a.out
+# run: fclean test
+# 	@echo "\"a.out\" execution below!"
+# 	@./a.out
 
-debug: fclean test bonus
-	gdb ./a.out
+# debug: fclean test bonus
+# 	gdb ./a.out
 
 # Compile .c to .o #
 %.o: %.c
-	@$(CC) $(TESTFLAGS) $(COPTIONS) $^ -o $@
+	@$(CC) $(CFLAGS) $(COPTIONS) $^ -o $@
 
 clean:
 	@rm -f $(SRC_OBJ)
 	@rm -f $(MAIN_OBJ)
 	@rm -f $(BONUS_OBJ)
 	@rm -f $(TEST_OBJ)
-  ifeq ("$(wildcard $(LIBFTDIR))", "")
-	@echo "Directory does not exist."
-  else
-	$(MAKE) fclean -C libft/
-	@echo "libft folder cleaned"
-  endif
-	@rm -f libft.a
-	@rm -f libft.h
+#   ifeq ("$(wildcard $(LIBFTDIR))", "")
+# 	@echo "libft: Directory does not exist."
+#   else
+# 	$(MAKE) fclean -C libft/
+# 	@echo "libft folder cleaned"
+#   endif
+# 	@rm -f libft.a
+# 	@rm -f libft.h
 
 fclean: clean
 	@rm -f $(NAME) $(MAIN_NAME)
@@ -90,18 +90,17 @@ help:
 	@echo "Possible Commands:"
 	@echo "all --> Compile whole project"
 	@echo "name --> Display project name"
-	@echo "bonus --> Compile bonus if available project"
-	@echo "test --> Compile main if available"
-	@echo "run --> Run main if available"
-	@echo "debug --> Run GDB with a.out"
+#	@echo "bonus --> Compile bonus if available project"
+#	@echo "test --> Compile main if available"
+#	@echo "run --> Run main if available"
+#	@echo "debug --> Run GDB with a.out"
 	@echo "clean --> Delete all object files"
 	@echo "fclean --> Delete everything besides source files"
 	@echo "re --> recompile everything (fclean, all)"
-	@echo "libft --> Compile libft and copy libft.h and libft.a to project folder"
+#	@echo "libft --> Compile libft and copy libft.h and libft.a to project folder"
 
 .PHONY: all name test test_strict run bonus debug fclean clean re help libft
 
 
 # End comments on how to compile ft_printf with a new project:
-# prerequisites: libftprintf.a libft.a libft.h ft_printf.h
-# compile with "cc -g main.c libft.a libftprintf.a"
+# prerequisites: libftprintf.a ft_printf.h
