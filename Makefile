@@ -33,23 +33,23 @@ $(NAME): $(SRC_OBJ)
 # bonus: $(BONUS_OBJ) $(SRC_OBJ)
 # 	ar rcs $(NAME) $(SRC_OBJ) $(BONUS_OBJ)
 
-libft:
-  ifeq ("$(wildcard $(LIBFTDIR))", "")
-	@echo "Directory does not exist."
-	git submodule add git@github.com:WSSMRKS/libft.git
-  else
-	@echo "Skipping download because directory already exists."
-  endif
-	$(MAKE) all -C libft/
-	cp -rf libft/libft.h ./
-	cp -rf libft/libft.a ./
+# libft:
+#   ifeq ("$(wildcard $(LIBFTDIR))", "")
+# 	@echo "Directory does not exist."
+# 	git submodule add git@github.com:WSSMRKS/libft.git
+#   else
+# 	@echo "Skipping download because directory already exists."
+# 	$(MAKE) all -C libft/
+# 	cp -rf libft/libft.h ./
+# 	cp -rf libft/libft.a ./
+#   endif
 
 test: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
-	@$(CC) $(TESTFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) $(LIBFT_SRC) -o $(MAIN_NAME)
+	@$(CC) $(TESTFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
 
 test_strict: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
-	@$(CC) $(CFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) $(LIBFT_SRC) -o $(MAIN_NAME)
+	@$(CC) $(CFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
 
 run: fclean test
@@ -79,7 +79,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME) $(MAIN_NAME)
-	@echo "\"libft.a\" deleted"
+	@echo "\"$(NAME)\" deleted"
 
 re: fclean all
 
