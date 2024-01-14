@@ -44,8 +44,8 @@ $(NAME): $(SRC_OBJ)
 # 	cp -rf libft/libft.a ./
 #   endif
 
-test: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
-	@$(CC) $(TESTFLAGS) $(MAIN_OBJ) $(SRC_OBJ) $(TEST_OBJ) -o $(MAIN_NAME)
+test: $(NAME)
+	@$(CC) $(TESTFLAGS) $(MAIN_SRC) $(SRC) $(TEST_SRC) -o $(MAIN_NAME)
 	@echo "test command sucessfully executed. Executable is called \"$(MAIN_NAME)\"!"
 
 # test_strict: $(MAIN_OBJ) $(NAME) $(TEST_OBJ)
