@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:04:54 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/14 18:25:17 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/01/14 19:02:51 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,6 @@ int	main(void)
 	setbuf(stdout, NULL);
 	p = 42;
 	pp = &p;
-	// ppp = &pp;
-	// write(1, &p, 1);
-	// write(1, &pp, 7);
-	// ft_itoa_base((unsigned long) pp, "0123456789abcdef");
-	// write(1, "\n", 1);
-	// printf("01: %p\n", pp);
-	// printf("02: \"%20.15d\"", (int) p);
-	// printf("\n");
-	// printf("03: \"%-20.15d\"", (int) p);
-	// printf("\n");
-	// printf("04: \"% -20.15d\"", (int) p);
-	// printf("\n");
-	// printf("04.1: \"% -20.15d\"", (int) p);
-	// printf("\n");
-	// printf("04.2: \"%-20.15d\"", (int) p);
-	// printf("\n");
-	// printf("04.3: \"%#.60x\"", (unsigned int) p);
-	// printf("\n");
-	// printf("06: \"%10.5d\"", (int) p);
-	// printf("\n");
-	// printf("07: \"%-10.5d\"", (int) p);
-	// printf("\n");
-	// printf("08: \"%-10d\"", (int) p);
-	// printf("\n");
-	// printf("09: \"%010 \"", (int) p);
-	// printf("\n");
-	// printf("10: \"hallo tahis dlsjf% 10 d%\"", (int) p);
-	// printf("\n");
-	// printf("11: \"hallo tahis dlsjf%-     10.d%\"", (int) p);
-	// printf("\n");
-	// printf("12: \"hallo tahis\0 dlsjf\"");
-	// printf("\n");
 
 	printf("\n#01\n");
 	printf("Built in:\n");
@@ -73,6 +41,15 @@ int	main(void)
 	ft_printf("selfmade:\n");
 	ft_printf("1234%", pp);
 	ret = ft_printf("%", pp);
+	ft_printf("\nReturn value: %d\n", ret);
+
+	printf("\n#01.2\n");
+	printf("Built in:\n");
+	ret = printf("%c", 0);
+	printf("\nReturn value: %d\n", ret);
+	ft_printf("selfmade:\n");
+	ft_printf("%c", 0);
+	ret = ft_printf("%c", 0);
 	ft_printf("\nReturn value: %d\n", ret);
 	
 	printf("\n#02\n");
@@ -278,3 +255,37 @@ LONG_MIN, ULONG_MAX, 0, -42));
 	ft_printf("\nReturn value: %d\n", ft_printf(" %x %x %x %x %x %x %x", INT_MAX, INT_MIN, LONG_MAX,
 LONG_MIN, ULONG_MAX, 0, -42));
 }
+
+
+	// ppp = &pp;
+	// write(1, &p, 1);
+	// write(1, &pp, 7);
+	// ft_itoa_base((unsigned long) pp, "0123456789abcdef");
+	// write(1, "\n", 1);
+	// printf("01: %p\n", pp);
+	// printf("02: \"%20.15d\"", (int) p);
+	// printf("\n");
+	// printf("03: \"%-20.15d\"", (int) p);
+	// printf("\n");
+	// printf("04: \"% -20.15d\"", (int) p);
+	// printf("\n");
+	// printf("04.1: \"% -20.15d\"", (int) p);
+	// printf("\n");
+	// printf("04.2: \"%-20.15d\"", (int) p);
+	// printf("\n");
+	// printf("04.3: \"%#.60x\"", (unsigned int) p);
+	// printf("\n");
+	// printf("06: \"%10.5d\"", (int) p);
+	// printf("\n");
+	// printf("07: \"%-10.5d\"", (int) p);
+	// printf("\n");
+	// printf("08: \"%-10d\"", (int) p);
+	// printf("\n");
+	// printf("09: \"%010 \"", (int) p);
+	// printf("\n");
+	// printf("10: \"hallo tahis dlsjf% 10 d%\"", (int) p);
+	// printf("\n");
+	// printf("11: \"hallo tahis dlsjf%-     10.d%\"", (int) p);
+	// printf("\n");
+	// printf("12: \"hallo tahis\0 dlsjf\"");
+	// printf("\n");
