@@ -6,15 +6,15 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:04:41 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/04 19:08:11 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/04 19:33:23 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_init(int *count, int *i, const char *s)
+static char	ft_init(int *count, int *i, const char *s)
 {
-	int	type;
+	char	type;
 
 	if (s == 0)
 		*count = -1;
@@ -23,33 +23,6 @@ static int	ft_init(int *count, int *i, const char *s)
 	*i = 0;
 	type = 0;
 	return (type);
-}
-
-static int	ft_get_case(char *format)
-{
-	char		*sub;
-
-	sub = ++format;
-	if (*sub == 'c')
-		return (1);
-	if (*sub == 's')
-		return (2);
-	if (*sub == 'd' || *sub == 'i')
-		return (3);
-	if (*sub == 'u')
-		return (5);
-	if (*sub == 'p')
-		return (6);
-	if (*sub == 'x')
-		return (7);
-	if (*sub == 'X')
-		return (8);
-	if (*sub == '%')
-		return (9);
-	if (*sub == '\0')
-		return (0);
-	else
-		return (-1);
 }
 
 static int	ft_p(long tmp)
@@ -67,29 +40,29 @@ static int	ft_p(long tmp)
 	return (count);
 }
 
-static long	ft_core(int type, va_list ar, int *count)
+static long	ft_core(char type, va_list ar, int *count)
 {
 	long	tmp;
 
-	if (type == 1)
+	if (type == 'c')
 		*count += ft_putchar_fd_ret(va_arg(ar, int), 1);
-	else if (type == 2)
+	else if (type == 's')
 		*count += ft_putstr_fd_ret(va_arg(ar, char *), 1);
-	else if (type == 3)
+	else if (type == 'd' || type == 'i')
 		*count += ft_pnb_b_fd((long) va_arg(ar, int), "0123456789", 1, 1);
-	else if (type == 5)
+	else if (type == 'u')
 		*count += ft_pnb_b_fd((long) va_arg(ar, unsigned int),
 				"0123456789", 1, 1);
-	else if (type == 6)
+	else if (type == 'p')
 	{
 		tmp = va_arg(ar, long);
 		*count += ft_p(tmp);
 	}
-	else if (type == 7)
+	else if (type == 'x')
 	{
 		*count += ft_pnb_b_fd_s(va_arg(ar, int), "0123456789abcdef", 1, 0);
 	}
-	else if (type == 8)
+	else if (type == 'X')
 		*count += ft_pnb_b_fd_s(va_arg(ar, int), "0123456789ABCDEF", 1, 0);
 	else
 		*count += ft_putchar_fd_ret('%', 1);
@@ -101,7 +74,7 @@ int	ft_printf(const char *s, ...)
 	va_list	args;
 	int		count;
 	int		i;
-	int		type;
+	char	type;
 
 	type = ft_init(&count, &i, s);
 	va_start(args, s);
@@ -109,12 +82,12 @@ int	ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%')
 		{
-			type = ft_get_case((char *)s + i);
-			if (type == 0)
+			type = s[i + 1];
+			if (type == '\0')
 				return (-1);
-			if (type == 9)
+			if (type == '%')
 				count += ft_putchar_fd_ret('%', 1);
-			if (type != 0 && type != 9)
+			if (type != '\0' && type != '%')
 				ft_core(type, args, &count);
 			i += 2;
 		}
@@ -125,6 +98,7 @@ int	ft_printf(const char *s, ...)
 	return (count);
 }
 
-// FIXME	string with % and no identifier giving wrong output.
+// FIXME	string with %d  and no identifier giving wrong output.
 // FIXME	ft_printf(0) not working
+// TODO		update printf(0) to save code
 // TODO		test % in all places of string
