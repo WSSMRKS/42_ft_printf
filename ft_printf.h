@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:06:46 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/14 17:47:21 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/04 18:41:11 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-typedef struct s_arg_spec
-{
-	int		type;
-	int		just;
-	int		dot;
-	int		shash;
-	int		splus;
-	int		sspace;
-	int		spercent;
-}				t_arg_spec;
 
 int	ft_printf(const char *s, ...);
 int	ft_pnb_b_fd(long nbr, char *base, int fd, int negp);

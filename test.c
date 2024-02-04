@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:04:54 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/14 19:02:51 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/04 15:16:29 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(void)
 	ft_printf("%", pp);
 	ret = ft_printf("%", pp);
 	ft_printf("\nReturn value: %d\n", ret);
-	
+
 	printf("\n#01.1\n");
 	printf("Built in:\n");
 	ret = printf("1234%", pp);
@@ -51,12 +51,17 @@ int	main(void)
 	ft_printf("%c", 0);
 	ret = ft_printf("%c", 0);
 	ft_printf("\nReturn value: %d\n", ret);
-	
+
 	printf("\n#02\n");
 	printf("Built in:\n");
 	printf("\nReturn value: %d\n", printf("%%%", pp));
 	ft_printf("selfmade:\n");
 	ft_printf("\nReturn value: %d\n", ft_printf("%%%", pp));
+	printf("\n#02.1\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf("this is not defined %l How is it gonna behave?", pp));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf("this is not defined %l How is it gonna behave?", pp));
 	printf("\n#03\n");
 	printf("Built in:\n");
 	printf("\nReturn value: %d\n", printf("", pp));
@@ -254,6 +259,16 @@ LONG_MIN, ULONG_MAX, 0, -42));
 	ft_printf("selfmade:\n");
 	ft_printf("\nReturn value: %d\n", ft_printf(" %x %x %x %x %x %x %x", INT_MAX, INT_MIN, LONG_MAX,
 LONG_MIN, ULONG_MAX, 0, -42));
+	printf("\n#37\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(" %d", -2147483648));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(" %d", -2147483648));
+	printf("\n#38\n");
+	printf("Built in:\n");
+	printf("\nReturn value: %d\n", printf(0));
+	ft_printf("selfmade:\n");
+	ft_printf("\nReturn value: %d\n", ft_printf(0));
 }
 
 
