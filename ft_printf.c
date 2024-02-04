@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:04:41 by maweiss           #+#    #+#             */
-/*   Updated: 2024/02/04 19:33:23 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/02/04 20:50:38 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,3 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (count);
 }
-
-// FIXME	string with %d  and no identifier giving wrong output.
-// FIXME	ft_printf(0) not working
-// TODO		update printf(0) to save code
-// TODO		test % in all places of string
