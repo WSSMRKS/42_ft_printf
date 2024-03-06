@@ -6,7 +6,7 @@
 /*   By: maweiss <maweiss@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 19:43:43 by maweiss           #+#    #+#             */
-/*   Updated: 2024/01/08 15:22:46 by maweiss          ###   ########.fr       */
+/*   Updated: 2024/03/06 11:33:32 by maweiss          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_putstr_fd_ret(char *s, int fd)
 {
-	int		strlen;
+	int		len;
 	int		i;
 
 	if (s == NULL)
@@ -23,14 +23,14 @@ int	ft_putstr_fd_ret(char *s, int fd)
 		return (6);
 	}
 	i = 0;
-	strlen = 0;
+	len = 0;
 	while (s[i] != '\0')
 	{
-		strlen++;
+		len++;
 		i++;
 	}
-	write(fd, s, strlen);
-	return (strlen);
+	write(fd, s, len);
+	return (len);
 }
 
 int	ft_putchar_fd_ret(char c, int fd)
